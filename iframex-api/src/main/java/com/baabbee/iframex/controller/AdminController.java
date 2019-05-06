@@ -36,8 +36,6 @@ public class AdminController {
 		@RequestMapping("/admin/receiveframe/{status1}/{status2}")
 		//pass 'prepaid sent' and 'don_received' statuses for the 'receive and validate button' 
 		public List<UserRequest> getValidationRequests(@PathVariable String status1,@PathVariable String status2){
-			System.out.println(status1);
-			System.out.println(status2);
 			List<String> statuslist=new ArrayList<String>();
 			Collections.addAll(statuslist,status1,status2);
 			System.out.println("inside validate frame block");

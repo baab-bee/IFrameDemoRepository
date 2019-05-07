@@ -42,5 +42,12 @@ public class FrameRequestController {
 	public void deleteFrameRequest(@PathVariable Long id) {
 		frameRequestService.deleteFrameRequest(id);
 	}
+	
+	@RequestMapping("/admin/processFrameRequest/{status}") 
+	public List<FrameRequest> getByFrameRequestStatus(@PathVariable String status){
+	  System.out.println("inside Frame request block"); List<FrameRequest>
+	  framerequest=frameRequestService.getByFrameRequestStatus(status); 
+	  return framerequest;
+	  }
 
 }

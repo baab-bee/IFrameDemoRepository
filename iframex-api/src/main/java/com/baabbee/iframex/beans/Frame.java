@@ -15,7 +15,7 @@ public class Frame {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "frame_id")
-	private String id;
+	private Long id;
 	
 	@Column(name = "frame_name")
 	private String name;
@@ -41,10 +41,10 @@ public class Frame {
 	@Column(name = "last_modified_date")
 	private Date lastModifiedDate;
 	
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -58,6 +58,19 @@ public class Frame {
 	}
 	public void setSize(String size) {
 		this.size = size;
+	}
+	
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public String getMaterial() {
+		return material;
+	}
+	public void setMaterial(String material) {
+		this.material = material;
 	}
 	public String getStatus() {
 		return status;

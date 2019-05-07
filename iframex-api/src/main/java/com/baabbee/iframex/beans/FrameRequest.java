@@ -1,4 +1,4 @@
-package com.baabbee.iframex.beans;
+	package com.baabbee.iframex.beans;
 
 import java.util.Date;
 
@@ -18,7 +18,7 @@ public class FrameRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "frame_request_id")
-	private String id;
+	private Long id;
 	
 	@Column(name = "frame_request_type")
 	private String type;
@@ -48,10 +48,10 @@ public class FrameRequest {
 	@OneToOne
 	private Frame frame;
 	
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getType() {
@@ -65,6 +65,19 @@ public class FrameRequest {
 	}
 	public void setSize(String size) {
 		this.size = size;
+	}
+	
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public String getMaterial() {
+		return material;
+	}
+	public void setMaterial(String material) {
+		this.material = material;
 	}
 	public String getStatus() {
 		return status;
@@ -97,6 +110,4 @@ public class FrameRequest {
 		this.frame = frame;
 	}
 	
-	
-
 }

@@ -35,4 +35,9 @@ public class FrameRequestService {
 	public void deleteFrameRequest(Long id) {
 		frameRequestRepository.deleteById(id);
 	}
+	
+	public List<FrameRequest> getByFrameRequestStatus(String status) {
+		List<FrameRequest> framerequest = frameRequestRepository.findByStatus(status);
+		return framerequest;
+	}
 }

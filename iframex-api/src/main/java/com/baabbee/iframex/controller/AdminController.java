@@ -42,11 +42,6 @@ public class AdminController {
 			List<UserRequest> userrequest=adminservice.findByStatusIn(statuslist);
 			return userrequest;
 		}
-//		@RequestMapping(method=RequestMethod.POST,value="/admin/validateframedetails")
-//		public void validateFrameDetails(@RequestBody Frame frame) {
-		//method already available in the FrameService class
-//			frameservice.addFrame(frame);
-//		}
-//		
+
 }
 

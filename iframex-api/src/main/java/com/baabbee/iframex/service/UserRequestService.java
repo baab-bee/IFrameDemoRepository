@@ -1,6 +1,8 @@
 package com.baabbee.iframex.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -26,7 +28,17 @@ public class UserRequestService {
 	}
 	
 	public void addUserRequest(UserRequest userRequest) {
-		userRequestRepository.save(userRequest);		
+		//Set the last modified date
+		userRequest.setLastModifiedDate(userRequest.getCreatedDate());
+		//Set the status
+		if (userRequest.getUserRequestType().equalsIgnoreCase("D")) {
+			userRequest.setStatus("DON_INITIATED");			
+		} else {
+			userRequest.setStatus("BEN_INITIATED");
+		}
+		//Set envelope size
+		userRequest.setEnvelopeSize();
+		userRequestRepository.save(userRequest);
 	}
 
 	public void addUserRequests(Set<UserRequest> userRequests) {
@@ -41,4 +53,20 @@ public class UserRequestService {
 		userRequestRepository.deleteById(id);
 	}
 
+	public enum UserRequestStatus {
+		DON_INITIATED,
+		DON_PROCESSED,
+		DON_PREPAID_SENT,
+		DON_RECIEVED,
+		DON_VALIDATED,
+		DON_INV,
+		DON_COMPLETE,
+		BEN_INITIATED,
+		BEN_PROCESSED,
+		BEN_PREPAID_SENT,
+		BEN_RECIEVED,
+		BEN_VALIDATED,
+		BEN_INV,
+		BEN_COMPLETE
 	}
+}

@@ -23,10 +23,10 @@ public class UserRequest {
 	private Long id;
 	
 	@Column(name = "user_request_type")
-	private String userRequestType;;
+	private String userRequestType;
 	
 	@Column(name = "total_ord_qty")
-	private int totalOrderedQty;
+	private int totalOrderedQty;//TO-DO change to entered qty
 	
 	@Column(name = "total_fulfilled_qty")
 	private int totalFulfilledQty;
@@ -87,6 +87,16 @@ public class UserRequest {
 	}
 	public void setTotalFulfilledQty(int totalFulfilledQty) {
 		this.totalFulfilledQty = totalFulfilledQty;
+	}
+	public String getEnvelopeSize() {
+		return envelopeSize;
+	}
+	public void setEnvelopeSize() {
+		if (getTotalOrderedQty() < 2) {
+			this.envelopeSize = "Size 0";
+		} else if (getTotalOrderedQty() >= 2 && getTotalOrderedQty() <= 5) {
+			this.envelopeSize = "Size 2";
+		}
 	}
 	public String getRemarks() {
 		return remarks;

@@ -42,5 +42,11 @@ public class FrameController {
 	public void deleteFrame(@PathVariable Long id) {
 		frameService.deleteFrame(id);
 	}
+	
+	@RequestMapping("admin/showFrameMatches/{size}/{color}/{material}")
+	public List<Frame> getMatchingFrame(@PathVariable String size,@PathVariable String color,@PathVariable String material){
+		List<Frame> frame=frameService.getMatchingFrames(size,color,material);
+		return frame;
+	}
 
 }

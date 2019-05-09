@@ -36,4 +36,9 @@ public class FrameService {
 		frameRepository.deleteById(id);
 	}
 
+	public List<Frame> getMatchingFrames(String size, String color, String material) {
+		 List<Frame> frame=frameRepository.findBySizeAndColorAndMaterial(size,color,material);
+		 return frame;
+		 }
+
 }

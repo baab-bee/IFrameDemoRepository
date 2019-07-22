@@ -1,21 +1,13 @@
 package com.baabbee.iframex.beans;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -50,7 +42,7 @@ public class User {
 	public User() {
 		
 	}
-	public User(Long id, String name, Address address, Set<UserRequest> userRequests) {
+	public User(Long id, String name, Address address) {
 		super();
 		this.id = id;
 		this.name = name;

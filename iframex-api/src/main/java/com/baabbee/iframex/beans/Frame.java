@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -40,6 +42,10 @@ public class Frame {
 	
 	@Column(name = "last_modified_date")
 	private Date lastModifiedDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "donor_request_id")
+	private DonorRequest donorRequest;
 	
 	public String getId() {
 		return id;

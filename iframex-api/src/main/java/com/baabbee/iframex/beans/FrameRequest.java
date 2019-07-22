@@ -18,10 +18,7 @@ public class FrameRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "frame_request_id")
-	private String id;
-	
-	@Column(name = "frame_request_type")
-	private String type;
+	private Long id;
 	
 	@Column(name = "frame_request_size")
 	private String size;
@@ -42,23 +39,17 @@ public class FrameRequest {
 	private Date lastModifiedDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_request_id")
-	private UserRequest userRequest;
+	@JoinColumn(name = "benef_request_id")
+	private BeneficiaryRequest benefRequest;
 	
 	@OneToOne
 	private Frame frame;
 	
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
 	}
 	public String getSize() {
 		return size;
@@ -84,11 +75,11 @@ public class FrameRequest {
 	public void setLastModifiedDate(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
-	public UserRequest getUserRequest() {
-		return userRequest;
+	public BeneficiaryRequest getUserRequest() {
+		return benefRequest;
 	}
-	public void setUserRequest(UserRequest userRequest) {
-		this.userRequest = userRequest;
+	public void setUserRequest(BeneficiaryRequest userRequest) {
+		this.benefRequest = userRequest;
 	}
 	public Frame getFrame() {
 		return frame;

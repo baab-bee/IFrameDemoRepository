@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baabbee.iframex.beans.BeneficiaryRequest;
@@ -48,19 +49,21 @@ public class BeneficiaryRequestController {
 
 	}
 
-	@RequestMapping("/beneficiaryRequests/{status}")
-	public List<BeneficiaryRequest> getByInitStatus(@PathVariable String status) {
-		List<BeneficiaryRequest> userrequest = benRequestService.getByInitStatus(status);
-		return userrequest;
-	}
+//	@RequestMapping("/beneficiaryRequests/{status}")
+//	public List<BeneficiaryRequest> getByInitStatus(@PathVariable String status) {
+//		List<BeneficiaryRequest> userrequest = benRequestService.getByInitStatus(status);
+//		return userrequest;
+//	}
 
-	@RequestMapping("/beneficiaryRequests/{status1}/{status2}")
+	 
 	// pass 'prepaid sent' and 'don_received' statuses for the 'receive and validate
 	// button'
-	public List<BeneficiaryRequest> getValidationRequests(@PathVariable String status1, @PathVariable String status2) {
-		List<String> statuslist = new ArrayList<String>();
-		Collections.addAll(statuslist, status1, status2);
-		List<BeneficiaryRequest> userrequest = benRequestService.findByStatusIn(statuslist);
+	@RequestMapping(value = "/beneficiaryRequests/search", method = RequestMethod.GET )
+	public List<BeneficiaryRequest> getValidationRequests(@RequestParam("status") List<String> status) {
+//		List<String> statuslist = new ArrayList<String>();
+//		String[] statuses = status.split(",");
+//		Collections.addAll(statuslist, statuses);
+		List<BeneficiaryRequest> userrequest = benRequestService.findByStatusIn(status);
 		return userrequest;
 	}
 }

@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "frm_user")
@@ -22,6 +24,7 @@ public class User {
 	private String name;
 	
 	@Column(name = "email_id")
+	@NotNull
 	private String emailId;
 	
 	@Column(name = "mobile")

@@ -42,10 +42,10 @@ public class BeneficiaryRequestService {
 		benRequestRepository.deleteById(id);
 	}
 
-	public List<BeneficiaryRequest> getByInitStatus(String status) {
-		List<BeneficiaryRequest> benrequest=benRequestRepository.findByStatus(status);
-		return benrequest;
-	}
+//	public List<BeneficiaryRequest> getByInitStatus(String status) {
+//		List<BeneficiaryRequest> benrequest=benRequestRepository.findByStatus(status);
+//		return benrequest;
+//	}
 
 	public List<BeneficiaryRequest> findByStatusIn(Collection<String> statuslist) {
 		List<BeneficiaryRequest> benReq=benRequestRepository.findByStatusIn(statuslist);		

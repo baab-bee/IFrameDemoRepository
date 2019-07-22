@@ -17,7 +17,7 @@ public class Frame {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "frame_id")
-	private String id;
+	private Long id;
 	
 	@Column(name = "frame_name")
 	private String name;
@@ -47,10 +47,10 @@ public class Frame {
 	@JoinColumn(name = "donor_request_id")
 	private DonorRequest donorRequest;
 	
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {

@@ -35,6 +35,7 @@ public class FrameRequestController {
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/frameRequests/{id}")
 	public void updateFrameRequest(@RequestBody FrameRequest frameRequest, @PathVariable Long id) {
+		frameRequest.setId(id);
 		frameRequestService.updateFrameRequest(id, frameRequest);
 	}
 	

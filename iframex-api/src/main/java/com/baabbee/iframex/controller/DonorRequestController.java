@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baabbee.iframex.EntityNotFoundException;
 import com.baabbee.iframex.beans.DonorRequest;
 import com.baabbee.iframex.service.DonorRequestService;
 
@@ -29,7 +30,7 @@ public class DonorRequestController {
 	}
 
 	@RequestMapping("/donorRequests/{id}")
-	public DonorRequest getUserRequest(@PathVariable("id") Long id) {
+	public DonorRequest getUserRequest(@PathVariable("id") Long id) throws EntityNotFoundException {
 		return donRequestService.getDonorRequest(id);
 	}
 

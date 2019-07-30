@@ -8,7 +8,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baabbee.iframex.EntityNotFoundException;
 import com.baabbee.iframex.beans.DonorRequest;
+import com.baabbee.iframex.beans.FrameRequest;
 import com.baabbee.iframex.repository.DonorRequestRepository;
 
 @Service
@@ -22,8 +24,15 @@ public class DonorRequestService {
 		return donRequests;
 	}
 	
-	public DonorRequest getDonorRequest(Long id) {
-		return donRequestRepository.findById(id).get();
+	public DonorRequest getDonorRequest(Long id) throws EntityNotFoundException {
+		DonorRequest donorReq = null;
+		try {
+			donorReq = donRequestRepository.findById(id).get();
+		} catch (Exception e) {
+			if (donorReq == null)
+				throw new EntityNotFoundException(DonorRequest.class, "id", id.toString());
+		}
+		return donorReq;
 	}
 	
 	public void addDonorRequest(DonorRequest userRequest) {

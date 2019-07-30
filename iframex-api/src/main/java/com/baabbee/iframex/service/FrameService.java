@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baabbee.iframex.EntityNotFoundException;
 import com.baabbee.iframex.beans.Frame;
 import com.baabbee.iframex.beans.FrameRequest;
+import com.baabbee.iframex.beans.User;
 import com.baabbee.iframex.repository.FrameRepository;
 
 @Service
@@ -21,8 +23,15 @@ public class FrameService {
 		return frames;
 	}
 	
-	public Frame getFrame(Long id) {
-		return frameRepository.findById(id).get();
+	public Frame getFrame(Long id) throws EntityNotFoundException {
+		Frame frame = null;
+		try {
+			frame = frameRepository.findById(id).get();
+		} catch (Exception e) {
+			if (frame == null)
+				throw new EntityNotFoundException(Frame.class, "id", id.toString());
+		}
+		return frame;
 	}
 	
 	public void addFrame(Frame frame) {

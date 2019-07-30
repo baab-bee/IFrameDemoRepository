@@ -35,6 +35,8 @@ public class BeneficiaryRequestController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/beneficiaryRequests")
 	public void addUserRequest(@RequestBody BeneficiaryRequest userRequest) {
+		System.out.println(userRequest);
+		userRequest.getTotalOrderedQty();
 		benRequestService.addBeneficiaryRequest(userRequest);
 	}
 
@@ -54,7 +56,6 @@ public class BeneficiaryRequestController {
 //		List<BeneficiaryRequest> userrequest = benRequestService.getByInitStatus(status);
 //		return userrequest;
 //	}
-
 	 
 	// pass 'prepaid sent' and 'don_received' statuses for the 'receive and validate
 	// button'
@@ -66,4 +67,5 @@ public class BeneficiaryRequestController {
 		List<BeneficiaryRequest> userrequest = benRequestService.findByStatusIn(status);
 		return userrequest;
 	}
+		
 }

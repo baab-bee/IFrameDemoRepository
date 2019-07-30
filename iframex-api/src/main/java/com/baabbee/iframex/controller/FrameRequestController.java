@@ -43,5 +43,4 @@ public class FrameRequestController {
 	public void deleteFrameRequest(@PathVariable Long id) {
 		frameRequestService.deleteFrameRequest(id);
 	}
-
 }

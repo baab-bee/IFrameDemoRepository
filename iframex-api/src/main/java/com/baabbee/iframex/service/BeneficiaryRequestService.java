@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baabbee.iframex.beans.BeneficiaryRequest;
+import com.baabbee.iframex.beans.FrameRequest;
 import com.baabbee.iframex.repository.BeneficiaryRequestRepository;
 
 @Service
@@ -27,6 +28,7 @@ public class BeneficiaryRequestService {
 	}
 	
 	public void addBeneficiaryRequest(BeneficiaryRequest userRequest) {
+		System.out.println(userRequest);
 		benRequestRepository.save(userRequest);		
 	}
 

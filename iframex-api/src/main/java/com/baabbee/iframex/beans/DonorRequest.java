@@ -15,20 +15,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "donor_request")
+@Table(name = "don_request")
 public class DonorRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "donor_request_id")
+	@Column(name = "don_request_id")
 	private Long id;
 	
 	@Column(name = "envelope_size")
-	private String envelopeSize;
+	private int envelopeSize;
 	
-	@Column(name = "donor_request_remarks")
+	@Column(name = "don_request_remarks")
 	private String remarks;
 	
-	@Column(name = "donor_request_status")
+	@Column(name = "don_request_status")
 	private String status;
 	
 	@Column(name = "created_date")
@@ -98,6 +98,14 @@ public class DonorRequest {
 	public void setFrame(List<Frame> frame) {
 		this.frame = frame;
 	}
+	
+	public int getEnvelopeSize() {
+		return envelopeSize;
+	}
+	public void setEnvelopeSize(int envelopeSize) {
+		this.envelopeSize = envelopeSize;
+	}
+	
 	@Override
 	public String toString() {
 		return "UserRequest [id=" + id + ", status=" + status + ", frame=" + frame

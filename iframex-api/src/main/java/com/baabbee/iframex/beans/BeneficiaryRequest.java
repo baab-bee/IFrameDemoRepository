@@ -15,11 +15,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "benef_request")
+@Table(name = "ben_request")
 public class BeneficiaryRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "benef_request_id")
+	@Column(name = "ben_request_id")
 	private Long id;
 
 	@Column(name = "total_ord_qty")
@@ -28,10 +28,10 @@ public class BeneficiaryRequest {
 	@Column(name = "total_fulfilled_qty")
 	private int totalFulfilledQty;
 
-	@Column(name = "benef_request_remarks")
+	@Column(name = "ben_request_remarks")
 	private String remarks;
 
-	@Column(name = "benef_request_status")
+	@Column(name = "ben_request_status")
 	private String status;
 
 	@Column(name = "created_date")
@@ -44,19 +44,20 @@ public class BeneficiaryRequest {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToMany(mappedBy = "benefRequest", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="ben_request_id")
 	private List<FrameRequest> frameRequests;
 
 	public BeneficiaryRequest() {
 
 	}
 
-	public BeneficiaryRequest(Long id, int totalOrderedQty, String status) {
+	/*public BeneficiaryRequest(Long id, int totalOrderedQty, String status) {
 		super();
 		this.id = id;
 		this.totalOrderedQty = totalOrderedQty;
 		this.status = status;
-	}
+	}*/
 
 	public Long getId() {
 		return id;
@@ -67,6 +68,7 @@ public class BeneficiaryRequest {
 	}
 
 	public int getTotalOrderedQty() {
+		totalOrderedQty=frameRequests.size();
 		return totalOrderedQty;
 	}
 

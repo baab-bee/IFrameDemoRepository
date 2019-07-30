@@ -2,12 +2,15 @@ package com.baabbee.iframex.beans;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -38,11 +41,22 @@ public class FrameRequest {
 	@Column(name = "last_modified_date")
 	private Date lastModifiedDate;
 	
-	@ManyToOne
-	@JoinColumn(name = "benef_request_id")
-	private BeneficiaryRequest benefRequest;
+	@Column(name="gender")
+	private String gender;
 	
-	@OneToOne
+	//commented to make the mapping unidirectional from the parent Ben_request
+	/*@ManyToOne
+	@JoinColumn(name = "ben_request_id")
+	private BeneficiaryRequest benefRequest;*/
+	
+	/*@OneToOne
+	@JoinColumn(name="frame_id")
+	private Frame frame;*/
+	
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinTable(name="FRAMEREQUEST_FRAME", 
+	joinColumns = @JoinColumn(name="FRAME_REQUEST_ID"),
+	inverseJoinColumns = @JoinColumn(name="FRAME_ID"))
 	private Frame frame;
 	
 	public Long getId() {
@@ -75,12 +89,26 @@ public class FrameRequest {
 	public void setLastModifiedDate(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
-	public BeneficiaryRequest getUserRequest() {
+	/*public BeneficiaryRequest getUserRequest() {
 		return benefRequest;
 	}
 	public void setUserRequest(BeneficiaryRequest userRequest) {
 		this.benefRequest = userRequest;
+	}*/
+	
+	public String getColor() {
+		return color;
 	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public String getMaterial() {
+		return material;
+	}
+	public void setMaterial(String material) {
+		this.material = material;
+	}
+	
 	public Frame getFrame() {
 		return frame;
 	}
@@ -88,6 +116,17 @@ public class FrameRequest {
 		this.frame = frame;
 	}
 	
-	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	@Override
+	public String toString() {
+		return "FrameRequest [id=" + id + ", size=" + size + ", color=" + color + ", material=" + material + ", status="
+				+ status + ", createdDate=" + createdDate + ", lastModifiedDate=" + lastModifiedDate + ", gender="
+				+ gender + ", frame=" + frame + "]";
+	}
 
 }

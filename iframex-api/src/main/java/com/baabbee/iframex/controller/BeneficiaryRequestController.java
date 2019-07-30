@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baabbee.iframex.EntityNotFoundException;
 import com.baabbee.iframex.beans.BeneficiaryRequest;
 import com.baabbee.iframex.service.BeneficiaryRequestService;
 
@@ -29,7 +30,7 @@ public class BeneficiaryRequestController {
 	}
 
 	@RequestMapping("/beneficiaryRequests/{id}")
-	public BeneficiaryRequest getUserRequest(@PathVariable("id") Long id) {
+	public BeneficiaryRequest getUserRequest(@PathVariable("id") Long id) throws EntityNotFoundException {
 		return benRequestService.getBeneficiaryRequest(id);
 	}
 

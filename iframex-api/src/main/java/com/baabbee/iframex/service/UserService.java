@@ -27,10 +27,15 @@ public class UserService {
 	}
 	
 	public User getUser(Long id) throws EntityNotFoundException {
-		Optional<User> user = userRepository.findById(id);
-//		 if (user == null) {
-//	            throw new EntityNotFoundException(User.class, "id", id.toString())
-		 return user.get();
+		User user= null;
+		try {
+		  user = userRepository.findById(id).get();	 
+		} catch(Exception e) {
+			if (user == null) {
+            throw new EntityNotFoundException(User.class, "id", id.toString());
+			}
+		}
+		return user;
 	}
 	
 	public User addUser(User user) {

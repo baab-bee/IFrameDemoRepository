@@ -8,7 +8,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baabbee.iframex.EntityNotFoundException;
 import com.baabbee.iframex.beans.BeneficiaryRequest;
+import com.baabbee.iframex.beans.DonorRequest;
 import com.baabbee.iframex.beans.FrameRequest;
 import com.baabbee.iframex.repository.BeneficiaryRequestRepository;
 
@@ -23,8 +25,15 @@ public class BeneficiaryRequestService {
 		return benRequests;
 	}
 	
-	public BeneficiaryRequest getBeneficiaryRequest(Long id) {
-		return benRequestRepository.findById(id).get();
+	public BeneficiaryRequest getBeneficiaryRequest(Long id) throws EntityNotFoundException {
+		BeneficiaryRequest benReq = null;
+		try {
+			benReq = benRequestRepository.findById(id).get();
+		} catch (Exception e) {
+			if (benReq == null)
+				throw new EntityNotFoundException(BeneficiaryRequest.class, "id", id.toString());
+		}
+		return benReq;
 	}
 	
 	public void addBeneficiaryRequest(BeneficiaryRequest userRequest) {

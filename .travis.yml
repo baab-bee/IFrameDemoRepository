@@ -1,3 +1,11 @@
 language: java
 jdk:
-  - openjdk8
+- openjdk8
+deploy:
+  provider: heroku
+  api_key:
+    secure: mb4UNYY2/qX4bvyFhwxwbITKytt/xBQLDo1kyZoMaSDncfll4KQdWJ44Oy52PkGSFZVC6guIbpNkU/VYukYHJdFf/riyJrO26FQEwoH9boiSuqsgfkoO+nG01cHD4Ma9XDL3ukEHbm/2eGmH9GGPkjUe9SiUFGjtrSHKUBj+4E/FDgRxD9jQoPGB6AYKSwmFLOKoUASRgHxZAyc/12X8pangF8Fy7K0Cf4azFPOGThnm/lDV227eWq2CxuNU2DxWexPuOuUaNl7lxdzDNBBKJEEjkM+cZQAElf4V7SHwItMoMfG7a3Sn6cPu/CK5UrP0Bt0P9uIiI2W3DKeGMIFoxpxhVt5de1BUwivPTbC4pXp63bmmPpx9xVHL4DhLPuY9hHpDMIZnJbxJ6n6BRS8M8FCfTXZRbcg464RptcLaH//XvUTgZTZE38TdhTd7iaemEIIFlaUCkCrdNNODVlKwEylmOKe7EGTumm+Z+77D69kJKXRPP6KlZtGEGM1SW570rxVYSjmSgBso8dH4q3HCsbUPrfD7mxC6xijsRcSgXrJhkyUYcFbw6Aj1ERh3OZB0ub7HpP01del1zRiWkks9u48xcsPTSdF1YUggo4cZow7YxpVGT2XYowN35nsGdi6bCBKlEBtkxlySbfgHbN8xP4XYu2O3Z7nOwq7SXbevkTM=
+  app: iframex-api
+  on:
+    repo: baab-bee/IFrameDemoRepository
+    branch: QA

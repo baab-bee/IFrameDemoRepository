@@ -39,8 +39,8 @@ public class UserController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/users")
 	public ResponseEntity<Object>  addUser(@RequestBody User user)  throws EntityNotFoundException  {
-		user.setCreatedDate(new Date());
-		user.setLastModifiedDate(new Date());
+		//user.setCreatedDate(new Date());
+		//user.setLastModifiedDate(new Date());
 		User userResponse = userService.addUser(user);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		return new ResponseEntity<Object>(userResponse, responseHeaders,HttpStatus.CREATED);

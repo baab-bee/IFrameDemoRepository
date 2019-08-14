@@ -15,9 +15,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import com.baabbee.iframex.spring.config.audit.beans.Auditable;
+
 @Entity
 @Table(name = "frame_request")
-public class FrameRequest {
+public class FrameRequest extends Auditable<String> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "frame_request_id")
@@ -34,12 +39,6 @@ public class FrameRequest {
 	
 	@Column(name = "frame_request_status")
 	private String status;
-	
-	@Column(name = "created_date")
-	private Date createdDate;
-	
-	@Column(name = "last_modified_date")
-	private Date lastModifiedDate;
 	
 	@Column(name="gender")
 	private String gender;
@@ -77,18 +76,6 @@ public class FrameRequest {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-	public Date getLastModifiedDate() {
-		return lastModifiedDate;
-	}
-	public void setLastModifiedDate(Date lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
 	/*public BeneficiaryRequest getUserRequest() {
 		return benefRequest;
 	}
@@ -125,7 +112,7 @@ public class FrameRequest {
 	@Override
 	public String toString() {
 		return "FrameRequest [id=" + id + ", size=" + size + ", color=" + color + ", material=" + material + ", status="
-				+ status + ", createdDate=" + createdDate + ", lastModifiedDate=" + lastModifiedDate + ", gender="
+				+ status + ", gender="
 				+ gender + ", frame=" + frame + "]";
 	}
 

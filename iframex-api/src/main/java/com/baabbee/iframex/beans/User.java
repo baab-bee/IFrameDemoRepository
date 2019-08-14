@@ -24,7 +24,6 @@ public class User {
 	private String name;
 	
 	@Column(name = "email_id")
-	@NotNull
 	private String emailId;
 	
 	@Column(name = "mobile")

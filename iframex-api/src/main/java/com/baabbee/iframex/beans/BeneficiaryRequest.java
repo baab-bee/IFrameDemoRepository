@@ -14,9 +14,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.AbstractAuditable;
+
+import com.baabbee.iframex.spring.config.audit.beans.Auditable;
+
 @Entity
 @Table(name = "ben_request")
-public class BeneficiaryRequest {
+public class BeneficiaryRequest extends Auditable<String> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "ben_request_id")
@@ -34,11 +40,15 @@ public class BeneficiaryRequest {
 	@Column(name = "ben_request_status")
 	private String status;
 
-	@Column(name = "created_date")
-	private Date createdDate;
-
-	@Column(name = "last_modified_date")
-	private Date lastModifiedDate;
+	/*
+	 * @CreatedDate
+	 * 
+	 * @Column(name = "created_date") private Date createdDate;
+	 * 
+	 * @LastModifiedDate
+	 * 
+	 * @Column(name = "last_modified_date") private Date lastModifiedDate;
+	 */
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
@@ -99,22 +109,18 @@ public class BeneficiaryRequest {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public Date getLastModifiedDate() {
-		return lastModifiedDate;
-	}
-
-	public void setLastModifiedDate(Date lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
+	
+	/*
+	 * public Date getCreatedDate() { return createdDate; }
+	 * 
+	 * public void setCreatedDate(Date createdDate) { this.createdDate =
+	 * createdDate; }
+	 * 
+	 * public Date getLastModifiedDate() { return lastModifiedDate; }
+	 * 
+	 * public void setLastModifiedDate(Date lastModifiedDate) {
+	 * this.lastModifiedDate = lastModifiedDate; }
+	 */
 
 	public User getUser() {
 		return user;

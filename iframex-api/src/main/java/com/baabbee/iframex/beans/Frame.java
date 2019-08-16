@@ -12,9 +12,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import com.baabbee.iframex.spring.config.audit.beans.Auditable;
+
 @Entity
 @Table(name = "frame")
-public class Frame {
+public class Frame extends Auditable<String>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "frame_id")
@@ -37,12 +42,6 @@ public class Frame {
 	
 	@Column(name = "image_url")
 	private String imageUrl;
-	
-	@Column(name = "created_date")
-	private Date createdDate;
-	
-	@Column(name = "last_modified_date")
-	private Date lastModifiedDate;
 	
 	@Column(name="gender")
 	private String gender;
@@ -87,18 +86,6 @@ public class Frame {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-	public Date getLastModifiedDate() {
-		return lastModifiedDate;
-	}
-	public void setLastModifiedDate(Date lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
 	
 	public String getColor() {
 		return color;
@@ -129,8 +116,7 @@ public class Frame {
 	@Override
 	public String toString() {
 		return "Frame [id=" + id + ", name=" + name + ", size=" + size + ", color=" + color + ", material=" + material
-				+ ", status=" + status + ", imageUrl=" + imageUrl + ", createdDate=" + createdDate
-				+ ", lastModifiedDate=" + lastModifiedDate + ", gender=" + gender + ", remarks=" + remarks
+				+ ", status=" + status + ", imageUrl=" + imageUrl + ", gender=" + gender + ", remarks=" + remarks
 				+ ", donorRequest=" + donorRequest + "]";
 	}
 	

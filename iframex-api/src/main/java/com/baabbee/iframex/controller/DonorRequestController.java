@@ -78,37 +78,16 @@ public class DonorRequestController {
 		List<DonorRequest> userrequest = donRequestService.findByStatusIn(status);
 		return userrequest;
 	}
-	//http://localhost:8080/donorRequests?id=1,2
-	/*@RequestMapping(value="/donorRequests/updateStatus/{id}",method=RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void updateDonorRequestsStatus(@RequestBody String status,@RequestParam List<Long> requestParams ) {
-		System.out.println("status is "+status);
-		for(Long i:requestParams) {
-			System.out.println("status is "+status+"for i "+i);
-			donRequestService.partialUpdateDonorRequests(status,i);
-		}
-	}*/
 	
 	//http://localhost:8080/donorRequests/19
-	//@RequestMapping(value = "/donorRequests/{id}", method = RequestMethod.PATCH, consumes = "application/json-patch+json")
 	@RequestMapping(value = "/donorRequests/{id}", method = RequestMethod.PATCH,produces = MediaType.APPLICATION_JSON_VALUE)
     @Patch(service = DonorRequestService.class, id = Long.class)
-    public DonorRequest patch(@PathVariable Long id,
+    public DonorRequest patch(@PathVariable List<Long> id,
                        @PatchRequestBody DonorRequest donorrequest) {
 		System.out.println(donorrequest);
-		//for(long id:idList) {
-		donorrequest.setId(id);
         donRequestService.save(donorrequest);
-		//}
 		return donorrequest;
 		
     }
-	
-//	@RequestMapping(value = "/heavyresource/{id}", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<?> partialUpdateName(@RequestBody DonorRequestStatusOnly partialUpdate, @PathVariable("id") Long id) {
-//		partialUpdate.setId(id);
-//		donRequestService.save(partialUpdate);
-//        return ResponseEntity.ok("resource address updated");
-//    }
-
 
 }

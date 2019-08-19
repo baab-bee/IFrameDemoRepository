@@ -57,7 +57,6 @@ public class PartialUpdateArgumentResolver implements HandlerMethodArgumentResol
                                   WebDataBinderFactory binderFactory) throws Exception {
 
         ServletServerHttpRequest req = createInputMessage(webRequest);
-
         Patch patch = parameter.getMethodAnnotation(Patch.class);
         Class<Patch> serviceClass = patch.service();
         Class idClass = patch.id();

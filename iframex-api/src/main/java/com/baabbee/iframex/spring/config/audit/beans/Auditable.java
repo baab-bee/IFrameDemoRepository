@@ -22,7 +22,15 @@ package com.baabbee.iframex.spring.config.audit.beans;
 	    @Column(name = "created_date")
 	    private Date createdDate;
 
-	    @LastModifiedDate
+	    public Date getCreatedDate() {
+			return createdDate;
+		}
+
+		public void setCreatedDate(Date createdDate) {
+			this.createdDate = createdDate;
+		}
+
+		@LastModifiedDate
 	    @Column(name = "last_modified_date")
 	    private Date lastModifiedDate;
 	    

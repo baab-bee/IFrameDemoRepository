@@ -43,15 +43,6 @@ public class FrameRequest extends Auditable<String> {
 	@Column(name="gender")
 	private String gender;
 	
-	//commented to make the mapping unidirectional from the parent Ben_request
-	/*@ManyToOne
-	@JoinColumn(name = "ben_request_id")
-	private BeneficiaryRequest benefRequest;*/
-	
-	/*@OneToOne
-	@JoinColumn(name="frame_id")
-	private Frame frame;*/
-	
 	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinTable(name="FRAMEREQUEST_FRAME", 
 	joinColumns = @JoinColumn(name="FRAME_REQUEST_ID"),

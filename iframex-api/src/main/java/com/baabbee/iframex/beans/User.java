@@ -57,16 +57,16 @@ public class User extends Auditable<String>{
 		this.address = address;
 	}
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private List<DonorRequest> donrequest;
+	/*@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")*/
+	/*private List<DonorRequest> donrequest;
 	
 	public List<DonorRequest> getDonrequest() {
 		return donrequest;
 	}
 	public void setDonrequest(List<DonorRequest> donrequest) {
 		this.donrequest = donrequest;
-	}
+	}*/
 	public Long getId() {
 		return id;
 	}

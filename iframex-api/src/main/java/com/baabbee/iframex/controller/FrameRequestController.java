@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baabbee.iframex.EntityNotFoundException;
@@ -24,11 +25,16 @@ public class FrameRequestController {
 		return frameRequestService.getAllFrameRequests();
 	}
 	
-	@RequestMapping("/frameRequests/{id}")
+	@RequestMapping(method = RequestMethod.GET,value="/frameRequests/{id}")
 	public FrameRequest getFrameRequest(@PathVariable("id") Long id) throws EntityNotFoundException {
 		return frameRequestService.getFrameRequest(id);
 	}
-
+	
+	@RequestMapping(method = RequestMethod.GET,value="/frameRequests/search")
+	public List<FrameRequest> getFrameRequestByStatus(@RequestParam("status") String status) {
+		return frameRequestService.getFrameRequestByStatus(status);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/frameRequests")
 	public void addFrameRequest(@RequestBody FrameRequest frameRequest) {
 		frameRequestService.addFrameRequest(frameRequest);

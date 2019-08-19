@@ -36,26 +36,13 @@ public class DonorRequest extends Auditable<String> {
 	
 	@Column(name = "don_request_status")
 	private String status;
-		
-	@Column(name="user_id")
-	private Long user_id;
 
-	/*@ManyToOne(cascade = CascadeType.ALL)//unidirectional
-	@JoinColumn(name = "user_id")*/
-	//private User user;
+	@ManyToOne(cascade = CascadeType.ALL)//unidirectional
+	@JoinColumn(name = "user_id")
+	private User user;
 
-//	@OneToMany(mappedBy = "userRequest", cascade = CascadeType.ALL)
-//	private List<FrameRequest> frameRequests;
-
-	public Long getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
-	}
-
-	@OneToMany(mappedBy = "donorRequest", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="don_request_id")
 	private List<Frame> frame;	
 	
 	public DonorRequest() {
@@ -86,12 +73,12 @@ public class DonorRequest extends Auditable<String> {
 		this.status = status;
 	}
 
-	/*public User getUser() {
+	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
-	}*/
+	}
 	public List<Frame> getFrame() {
 		return frame;
 	}
@@ -108,7 +95,7 @@ public class DonorRequest extends Auditable<String> {
 	
 	@Override
 	public String toString() {
-		return "UserRequest [id=" + id + ", status=" + status + ", frame=" + frame
+		return "UserRequest [id=" + id + ", status=" + status
 				+ ", toString()=" + super.toString() + "]";
 	}
 	

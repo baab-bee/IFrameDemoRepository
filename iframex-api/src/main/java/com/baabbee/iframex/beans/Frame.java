@@ -2,6 +2,7 @@ package com.baabbee.iframex.beans;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,13 +49,6 @@ public class Frame extends Auditable<String>{
 	
 	@Column(name="remarks")
 	private String remarks;
-	
-	@ManyToOne
-	@JoinColumn(name = "don_request_id")
-	private DonorRequest donorRequest;
-	
-	/*@OneToOne(mappedBy="FrameRequest")
-	private Frame frame;*/
 	
 	public Long getId() {
 		return id;
@@ -113,11 +107,12 @@ public class Frame extends Auditable<String>{
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	
 	@Override
 	public String toString() {
 		return "Frame [id=" + id + ", name=" + name + ", size=" + size + ", color=" + color + ", material=" + material
 				+ ", status=" + status + ", imageUrl=" + imageUrl + ", gender=" + gender + ", remarks=" + remarks
-				+ ", donorRequest=" + donorRequest + "]";
+			 + "]";
 	}
 	
 

@@ -11,4 +11,6 @@ import com.baabbee.iframex.beans.FrameRequest;
 
 public interface FrameRequestRepository extends CrudRepository<FrameRequest, Long> {
 
+	List<FrameRequest> findByStatus(String status);
+
 }

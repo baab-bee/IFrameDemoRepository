@@ -49,7 +49,16 @@ public class Frame extends Auditable<String>{
 	
 	@Column(name="remarks")
 	private String remarks;
+
+	@Column(name="don_request_id")
+	private Long donRequestId;
 	
+	public Long getDonRequestId() {
+		return donRequestId;
+	}
+	public void setDonRequestId(Long donRequestId) {
+		this.donRequestId = donRequestId;
+	}
 	public Long getId() {
 		return id;
 	}

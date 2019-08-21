@@ -40,10 +40,6 @@ public class DonorRequest extends Auditable<String> {
 	@ManyToOne(cascade = CascadeType.ALL)//unidirectional
 	@JoinColumn(name = "user_id")
 	private User user;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="don_request_id")
-	private List<Frame> frame;	
 	
 	public DonorRequest() {
 		
@@ -78,12 +74,6 @@ public class DonorRequest extends Auditable<String> {
 	}
 	public void setUser(User user) {
 		this.user = user;
-	}
-	public List<Frame> getFrame() {
-		return frame;
-	}
-	public void setFrame(List<Frame> frame) {
-		this.frame = frame;
 	}
 	
 	public int getEnvelopeSize() {

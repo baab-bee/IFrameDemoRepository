@@ -1,20 +1,31 @@
 package com.baabbee.iframex.beans;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import com.baabbee.iframex.spring.config.audit.beans.Auditable;
 
 
 @Entity
 @Table(name = "frm_user")
-public class User {
+public class User extends Auditable<String>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "user_id")
@@ -33,12 +44,6 @@ public class User {
 	@Column(name = "user_remarks")
 	private String remarks;
 	
-	@Column(name = "created_date")
-	private Date createdDate;
-	
-	@Column(name = "last_modified_date")
-	private Date lastModifiedDate;
-	
 	@Embedded
 	private Address address;
 	
@@ -51,6 +56,17 @@ public class User {
 		this.name = name;
 		this.address = address;
 	}
+	
+	/*@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")*/
+	/*private List<DonorRequest> donrequest;
+	
+	public List<DonorRequest> getDonrequest() {
+		return donrequest;
+	}
+	public void setDonrequest(List<DonorRequest> donrequest) {
+		this.donrequest = donrequest;
+	}*/
 	public Long getId() {
 		return id;
 	}
@@ -75,18 +91,7 @@ public class User {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-	public Date getLastModifiedDate() {
-		return lastModifiedDate;
-	}
-	public void setLastModifiedDate(Date lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
+
 	public Address getAddress() {
 		return address;
 	}

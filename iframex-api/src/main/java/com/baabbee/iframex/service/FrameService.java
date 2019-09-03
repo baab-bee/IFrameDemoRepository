@@ -84,4 +84,15 @@ public class FrameService {
 	public void addBulkFrame(List<Frame> frame) {
 		frameRepository.saveAll(frame);
 	}
+	
+	public Frame find(Long id) {
+		System.out.println("find method executed....");
+		Frame frmreq= frameRepository.findById(id).get();
+		System.out.println("Donor Object returned is "+frmreq);
+		return frmreq;
+    }
+	
+	public Frame save(Frame donorrequest) {
+		return frameRepository.save(donorrequest);
+	}
 }

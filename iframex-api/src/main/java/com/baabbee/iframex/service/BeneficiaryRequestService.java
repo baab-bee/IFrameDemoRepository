@@ -13,11 +13,15 @@ import com.baabbee.iframex.beans.BeneficiaryRequest;
 import com.baabbee.iframex.beans.DonorRequest;
 import com.baabbee.iframex.beans.FrameRequest;
 import com.baabbee.iframex.repository.BeneficiaryRequestRepository;
+import com.baabbee.iframex.repository.FrameRequestRepository;
 
 @Service
 public class BeneficiaryRequestService {
 	@Autowired
 	private BeneficiaryRequestRepository benRequestRepository;
+	
+	@Autowired
+	private FrameRequestRepository frameRequestRepository;
 	
 	public List<BeneficiaryRequest> getAllBeneficiaryRequests() {
 		List<BeneficiaryRequest> benRequests = new ArrayList<BeneficiaryRequest>();
@@ -38,7 +42,15 @@ public class BeneficiaryRequestService {
 	
 	public void addBeneficiaryRequest(BeneficiaryRequest userRequest) {
 		System.out.println(userRequest);
-		benRequestRepository.save(userRequest);		
+		BeneficiaryRequest benReq = benRequestRepository.save(userRequest);	
+		//Long benId = benReq.getId();
+		List<FrameRequest> frameRequests =  userRequest.getFrameRequests();
+	 for(FrameRequest frameRequest:frameRequests){
+		 frameRequest.setUserRequest(benReq);
+	 }
+		benReq.setFrameRequests(frameRequests);
+		frameRequestRepository.saveAll(frameRequests);
+				
 	}
 
 	public void addBeneficiaryRequests(Set<BeneficiaryRequest> userRequests) {

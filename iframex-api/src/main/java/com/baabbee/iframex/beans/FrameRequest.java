@@ -15,10 +15,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import com.baabbee.iframex.spring.config.audit.beans.Auditable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "frame_request")
@@ -49,6 +52,11 @@ public class FrameRequest extends Auditable<String> {
 	inverseJoinColumns = @JoinColumn(name="FRAME_ID"))
 	private Frame frame;
 	
+	 @ManyToOne(fetch = FetchType.LAZY)
+	    @JoinColumn(name = "benrequestid", nullable = false)
+	    @OnDelete(action = OnDeleteAction.CASCADE)
+	    private BeneficiaryRequest benRequest;
+	 
 	public Long getId() {
 		return id;
 	}
@@ -67,13 +75,27 @@ public class FrameRequest extends Auditable<String> {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	/*public BeneficiaryRequest getUserRequest() {
-		return benefRequest;
+	 @JsonIgnore
+	public BeneficiaryRequest getUserRequest() {
+		return benRequest;
 	}
+	 @JsonIgnore
 	public void setUserRequest(BeneficiaryRequest userRequest) {
-		this.benefRequest = userRequest;
-	}*/
+		this.benRequest = userRequest;
+	}
 	
+	 public Long getBeneficiaryRequest_id(){
+	        return benRequest.getId();
+	 }
+	 
+	 public String getBeneficiary_name() {
+		 return benRequest.getUser().getName();
+	 }
+	 
+	 public String getBeneficary_address() {
+		 Address address = benRequest.getUser().getAddress();
+		 return address.getAddressLine1() +  " " + address.getCity()+ " "+address.getState() + " " +address.getZipcode() + " "  +address .getCountry();
+	 }
 	public String getColor() {
 		return color;
 	}

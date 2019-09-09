@@ -3,6 +3,7 @@ package com.baabbee.iframex.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.baabbee.iframex.EntityNotFoundException;
 import com.baabbee.iframex.beans.Frame;
 import com.baabbee.iframex.beans.FrameRequest;
+import com.baabbee.iframex.service.FrameRequestService;
 import com.baabbee.iframex.service.FrameService;
+import com.baabbee.iframex.spring.config.patch.json.Patch;
+import com.baabbee.iframex.spring.config.patch.json.PatchRequestBody;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -55,5 +59,15 @@ public class FrameController {
 	public void addBulkFrame(@RequestBody List<Frame> frame) {
 		frameService.addBulkFrame(frame);
 	}
+	
+	@RequestMapping(value = "/frame/{id}", method = RequestMethod.PATCH,produces = MediaType.APPLICATION_JSON_VALUE)
+    @Patch(service = FrameService.class, id = Long.class)
+    public Frame patch(@PathVariable List<Long> id,
+                       @PatchRequestBody Frame donorrequest) {
+		System.out.println(donorrequest);
+		frameService.save(donorrequest);
+		return donorrequest;
+		
+    }
 	
 }

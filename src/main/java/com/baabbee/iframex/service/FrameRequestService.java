@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baabbee.iframex.EntityNotFoundException;
+import com.baabbee.iframex.beans.DonorRequest;
 import com.baabbee.iframex.beans.Frame;
 import com.baabbee.iframex.beans.FrameRequest;
 import com.baabbee.iframex.repository.FrameRequestRepository;
@@ -45,9 +46,20 @@ public class FrameRequestService {
 		frameRequestRepository.deleteById(id);
 	}
 
+	public FrameRequest find(Long id) {
+		System.out.println("find method executed....");
+		FrameRequest frmreq= frameRequestRepository.findById(id).get();
+		System.out.println("Donor Object returned is "+frmreq);
+		return frmreq;
+    }
+	
 	public List<FrameRequest> getFrameRequestByStatus(String status) {
 		List<FrameRequest> frameRequest=frameRequestRepository.findByStatus(status);
 		return frameRequest;
+	}
+	
+	public FrameRequest save(FrameRequest donorrequest) {
+		return frameRequestRepository.save(donorrequest);
 	}
 }
 	

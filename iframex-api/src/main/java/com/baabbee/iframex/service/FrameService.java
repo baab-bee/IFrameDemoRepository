@@ -48,8 +48,8 @@ public class FrameService {
 
 	public List<Frame> getMatchedFrames(FrameRequest frameRequest) {
 		 System.out.println(frameRequest);
-		 List<Frame> prioritylevel4=frameRepository.getBySize(frameRequest.getSize());
-		 System.out.println(prioritylevel4);
+		// List<Frame> prioritylevel4=frameRepository.getBySize(frameRequest.getSize());
+		 List<Frame> prioritylevel4=frameRepository.findBySizeAndStatus(frameRequest.getSize(), "FRAME_INITIATED");
 		 List<Frame> prioritylevel1=new ArrayList<Frame>();
 		 List<Frame> prioritylevel2=new ArrayList<Frame>();;
 		 List<Frame> prioritylevel3=new ArrayList<Frame>();;

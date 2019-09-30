@@ -11,5 +11,6 @@ import com.baabbee.iframex.beans.FrameRequest;
 public interface FrameRepository extends CrudRepository<Frame, Long> {
 
 	List<Frame> getBySize(String size);
+	List<Frame> findBySizeAndStatus(String size, String status);
 
 }

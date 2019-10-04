@@ -21,7 +21,6 @@ import com.baabbee.iframex.spring.config.patch.json.Patch;
 import com.baabbee.iframex.spring.config.patch.json.PatchRequestBody;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FrameRequestController {
 	
 	@Autowired

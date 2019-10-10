@@ -20,7 +20,6 @@ import com.baabbee.iframex.spring.config.patch.json.Patch;
 import com.baabbee.iframex.spring.config.patch.json.PatchRequestBody;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FrameController {
 	
 	@Autowired
@@ -38,6 +37,7 @@ public class FrameController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/frames")
 	public void addFrame(@RequestBody Frame frame) {
+		frame.setStatus("FRAME_INITIATED");
 		frameService.addFrame(frame);
 	}
 	
@@ -57,10 +57,13 @@ public class FrameController {
 	}
 	@RequestMapping(method = RequestMethod.POST,value="frame/frames-bulk")
 	public void addBulkFrame(@RequestBody List<Frame> frame) {
+		for(Frame frm : frame) {
+			frm.setStatus("FRAME_INITIATED");
+		}
 		frameService.addBulkFrame(frame);
 	}
 	
-	@RequestMapping(value = "/frame/{id}", method = RequestMethod.PATCH,produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/frames/{id}", method = RequestMethod.PATCH,produces = MediaType.APPLICATION_JSON_VALUE)
     @Patch(service = FrameService.class, id = Long.class)
     public Frame patch(@PathVariable List<Long> id,
                        @PatchRequestBody Frame donorrequest) {

@@ -18,7 +18,6 @@ import com.baabbee.iframex.beans.BeneficiaryRequest;
 import com.baabbee.iframex.service.BeneficiaryRequestService;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class BeneficiaryRequestController {
 
 	@Autowired

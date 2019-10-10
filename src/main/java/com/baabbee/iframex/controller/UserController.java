@@ -21,7 +21,6 @@ import com.baabbee.iframex.service.UserService;
 
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 	
 	@Autowired

@@ -57,15 +57,18 @@ public class FrameService {
 			 System.out.println("*****************************");
 			 Frame frame = prioritylevel4.get(i);
 			 System.out.println(frame);
-			 	if(frame.getGender().equals(frameRequest.getGender())) {
+			 String gender = frame.getGender();
+			 	if(gender != null && gender.equals(frameRequest.getGender())) {
 					 System.out.println("priority 3 passed with size and gender match for the obj "+frame);
 			 		prioritylevel3.add(frame);
 			 		System.out.println("Frame request obj to be compared is "+frameRequest);
-			 		if((frame.getColor().equals(frameRequest.getColor()))||(frame.getMaterial().equals(frameRequest.getMaterial()))) {
+			 		String color = frame.getColor();
+			 		String material = frame.getMaterial();
+			 		if(( color!=null && color.equals(frameRequest.getColor()))||(material!= null && material.equals(frameRequest.getMaterial()))) {
 						 System.out.println("priority 2 passed with size and gender match and mat or col match for obj "+frame);
 			 			prioritylevel2.add(frame);
 			 		}
-			 		if((frame.getColor().equals(frameRequest.getColor()))&&(frame.getMaterial().equals(frameRequest.getMaterial()))) {
+			 		if((color!= null && color.equals(frameRequest.getColor()))&&( material!=null && material.equals(frameRequest.getMaterial()))) {
 						 System.out.println("priority 1 passed with size and gender match and mat and col match for obj"+frame);
 			 			prioritylevel1.add(frame);
 			 		}
